@@ -1,8 +1,8 @@
-function Score() {
+function Score({currentScore, highestScore}) {
   return (
     <div className="score">
-      <p>Current Score: </p>
-      <p>Highest Score: </p>
+      <p>Current Score: {currentScore}</p>
+      <p>Highest Score: {highestScore}</p>
     </div>
   )
 }

@@ -8,7 +8,7 @@ function Card({name, img, onClick}) {
   )
 }
 
-function Game() {
+function Game({currentScore, highestScore, setCurrentScore, setHighestScore}) {
   const pokemonList = ["charizard", "gengar", "arcanine", "bulbasaur", "eevee", "dragonite", "squirtle", "ninetales", "snorlax", "blastoise"];
   const [pokemonImgList, setPokemonImgList] = useState([]);
   const [clickedList, setClickedList] = useState([]);
@@ -38,9 +38,13 @@ function Game() {
   function handleClick(name) {
     const newPokemonList = shuffle(pokemonImgList);
     setPokemonImgList(newPokemonList);
+    var newCurrentScore = 0;
+    var newHighestScore = 0;
     if (clickedList.includes(name)) {
       alert("Opps, try again!");
       setClickedList([]);
+      newCurrentScore = 0;
+      newHighestScore = Math.max(currentScore, highestScore);
     } else {
       setClickedList(
         [
@@ -48,8 +52,11 @@ function Game() {
           name
         ]
       )
+      newCurrentScore = currentScore + 1;
+      newHighestScore = Math.max(newCurrentScore, highestScore);
     }
-    
+    setCurrentScore(newCurrentScore);
+    setHighestScore(newHighestScore);
   }
 
   return (
